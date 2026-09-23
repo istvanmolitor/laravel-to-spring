@@ -1,27 +1,35 @@
-[← Főoldal](../README.md) · Következő: [01. Spring Boot alapok és a DI mentális modell →](01-spring-boot-alapok.md)
+[← Főoldal](../README.md) · Következő fázis: [01. Spring Boot alapok és a DI mentális modell →](01-spring-boot-alapok.md)
 
 # 0. fázis — Java alapok
 
 Időtartam: ~1-2 hét
 
 Cél: annyi Java nyelvi tudás, hogy a Spring kódot ne a szintaxis, hanem a koncepció nehezítse.
+PHP/Laravel háttérrel a legtöbb OOP és architektúra-fogalom ismerős lesz — ez a fázis kifejezetten
+azokra a pontokra fókuszál, ahol a Java nyelvi modellje **ténylegesen eltér** a PHP-től
+(statikus típusosság, generics, checked exceptionök), nem ismétli át az alap OOP-t a nulláról.
 
-- Típusrendszer: statikus típusosság, primitívek vs. objektumok (`int` vs `Integer`), erős típusosság
-  PHP-hoz képest (nincs laza `==`, nincs implicit type juggling)
-- OOP Java-ban: interfészek vs. absztrakt osztályok, `final`, package-visibility, konstruktorok
-- Generics (`List<String>`, `Optional<T>`) — ennek nincs igazi PHP megfelelője, erre szánj több időt
-- `Optional<T>` mint a `null` kezelés Laravel-es "?." helyett
-- Streamek és lambdák (`list.stream().filter(...).map(...).collect(...)`) — gondolj rá úgy, mint
-  a Laravel Collection-ökre (`collect($items)->filter()->map()`), a gondolkodásmód szinte azonos
-- Checked vs unchecked exceptionök (ez PHP-ban nem létezik, ez lesz az egyik legfurcsább rész)
-- Build eszköz: válaszd a **Maven**-t kezdésnek (egyszerűbb, mint Gradle, jobban dokumentált)
-- IDE: **IntelliJ IDEA Community** (a Spring ökoszisztéma szinte ehhez van optimalizálva)
+Ez a fázis alfejezetekre van bontva, mindegyik konkrét PHP/Laravel összehasonlításokkal és
+kódpéldákkal. Haladj sorban — mindegyik épít az előzőre:
 
-## Gyakorlat
-
-Írj pár kis konzolos programot (pl. egy egyszerű bank-szimulátor osztályokkal, kivételkezeléssel,
-stream-alapú összegzésekkel) Spring nélkül, tisztán Java-ban.
+1. [Fejlesztői környezet és build eszközök](00-java-alapok/01-kornyezet-es-eszkozok.md) —
+   JDK, Maven (Composer megfelelője), IntelliJ IDEA, projektstruktúra, Hello World
+2. [Típusrendszer](00-java-alapok/02-tipusrendszer.md) —
+   statikus típusosság, primitívek vs. objektumok, `String` összehasonlítás buktatói, `var`
+3. [OOP alapok](00-java-alapok/03-oop-alapok.md) —
+   láthatósági szintek, `final`, interfészek/absztrakt osztályok, `equals`/`hashCode`/`toString`, enum
+4. [Generics](00-java-alapok/04-generics.md) —
+   `List<T>`, saját generikus osztályok, miért nincs erre szükség PHP-ban
+5. [`Optional<T>`](00-java-alapok/05-optional.md) —
+   null-kezelés Java módra, mikor és hogyan használd
+6. [Streamek és lambdák](00-java-alapok/06-streamek-lambdak.md) —
+   Laravel Collection ↔ Stream API táblázatos megfeleltetés
+7. [Kivételkezelés](00-java-alapok/07-kivetelkezeles.md) —
+   checked vs unchecked exception, try-with-resources
+8. [Záró gyakorlat: bank szimulátor](00-java-alapok/08-gyakorlat-bank-szimulator.md) —
+   egy összefoglaló projekt, ami az összes fenti témát egyetlen kis alkalmazásban gyakoroltatja be,
+   ellenőrző kérdésekkel a fázis lezárásához
 
 ---
 
-[← Főoldal](../README.md) · Következő: [01. Spring Boot alapok és a DI mentális modell →](01-spring-boot-alapok.md)
+[← Főoldal](../README.md) · Következő fázis: [01. Spring Boot alapok és a DI mentális modell →](01-spring-boot-alapok.md)
