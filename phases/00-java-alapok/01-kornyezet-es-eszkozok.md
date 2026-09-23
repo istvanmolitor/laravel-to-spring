@@ -224,7 +224,103 @@ JUnit 5 függőséget ugyanúgy kézzel kell hozzáadnod a `pom.xml`-hez, a fent
 - Engedélyezd az auto-importot Maven változásoknál (`pom.xml` szerkesztésekor felugró
   értesítésben, vagy `Maven` panel → `Reload All Maven Projects`)
 
+## Az IntelliJ-vel generált projekt: `org.example` és a build folyamat
+
+Ha az imént `File → New → Project → Maven` varázslóval hoztál létre egy projektet (mondjuk
+`Teszt` néven), valószínűleg ezt kaptad:
+
+```
+~/IdeaProjects/Teszt/
+├── pom.xml
+└── src/main/java/org/example/Main.java
+```
+
+Két dolog azonnal szúrja a szemet, ha PHP-ból jössz: honnan jön az `org.example`, és mit jelent
+pontosan az, hogy "buildelni" kell a forrást.
+
+### Miért `org.example`?
+
+Ez **nem valamiféle Java-konvenció**, hanem az IntelliJ New Project varázslójának kitöltött
+placeholder GroupId-ja, amit akkor kapsz, ha a létrehozáskor nem írtad felül a "GroupId" mezőt.
+Önmagában semmit nem jelent — nem a te domained, nem köt semmilyen szervezethez, pusztán egy
+minta érték, amivel a varázsló ki tudja tölteni a `pom.xml`-t és a kezdő `Main.java` csomagját.
+
+A GroupId (és az ebből lévő Java package) hagyományosan a **fordított domained**, pontosan úgy,
+ahogy a `composer.json` `"name"` mezőjében is `vendor/package` formát használsz, csak itt egy
+szinttel korábban, magában a forráskódban is meg kell jelennie. Ha nincs saját domained, bármi
+egyedi jó választás: `io.github.<felhasznalonev>`, vagy egyszerűen a neved kisbetűvel
+összefűzve, pl. `istvanmolitor`.
+
+**Hogyan cseréld le a meglévő `org.example`-t:**
+
+1. A bal oldali Project fán navigálj a `src/main/java/org/example` csomaghoz
+2. Jobb klikk rajta → `Refactor` → `Rename...` → válaszd a **"Rename package"** opciót (ne csak a
+   mappát nevezd át kézzel!) → írd be az új nevet, pl. `hu.molitor`
+3. Az IntelliJ ekkor **minden fájlban** átírja a `package org.example;` sort és minden importot,
+   ami rá hivatkozott — ez a Refactor funkció lényege, ne kézzel, mappaátnevezéssel csináld
+4. A `pom.xml`-ben is érdemes frissíteni a `<groupId>org.example</groupId>` sort ugyanerre, hogy
+   konzisztens maradjon (ez funkcionálisan nem kötelező — a Java package-et nem a `pom.xml`
+   vezérli —, de zavaró, ha nem egyezik)
+
+A jövőben egyszerűbb elkerülni az egészet: projekt létrehozásakor írd be explicit a saját
+GroupId-odat, mielőtt a `Create`-re kattintasz.
+
+### Hogyan buildelődik ténylegesen a forráskód
+
+A parancs, amit futtattál —
+
+```bash
+javac src/main/java/org/example/Main.java -d target/classes
+```
+
+— **közvetlenül a `javac` fordítót** hívja meg, teljesen megkerülve mind IntelliJ-t, mind a
+Maven-t. Ez működik egyetlen függőség nélküli fájlnál, de nem ez a szokásos munkamód, és nem
+skálázódik: nem fordítja le automatikusan az összes `.java` fájlt, és nem veszi figyelembe a
+`pom.xml`-ben deklarált függőségeket (pl. JUnit-ot) a classpath összeállításánál.
+
+Két reális út van build-elésre egy Maven projektben:
+
+1. **A zöld play gomb IntelliJ-ben** — ez alapértelmezetten **nem a Maven-t hívja meg**, hanem
+   IntelliJ saját, beépített inkrementális Java fordítóját használja (gyorsabb, mert csak a
+   változott fájlokat fordítja újra). Ha azt szeretnéd, hogy a Run/Debug gomb ténylegesen
+   `mvn`-en keresztül fusson (pl. mert egy Maven plugin viselkedésére vagy kíváncsi), ezt itt
+   kapcsolhatod be: `Settings → Build, Execution, Deployment → Build Tools → Maven → Runner` →
+   `Delegate IDE build/run actions to Maven`.
+2. **Explicit Maven parancs** — `mvn compile` a terminálból (vagy a jobb oldali Maven panelen
+   `Lifecycle → compile` duplakattintással). Ez lefordítja **az összes** forrásfájlt a megfelelő
+   könyvtárszerkezetbe, a `pom.xml` függőségeivel együtt számított classpath-tal — ez a helyes,
+   skálázódó megfelelője annak, amit kézzel a `javac` hívással próbáltál elérni.
+
+### Hova kerül a build — a `target/` mappa
+
+A Maven Standard Directory Layout szerint **minden** generált fájl a `target/` mappába kerül,
+sosem a forrás mellé:
+
+```
+target/
+├── classes/                          # lefordított .class fájlok, package szerinti almappákban
+│   └── org/example/Main.class        # ide célzott pontosan a te "-d target/classes" kapcsolód
+├── test-classes/                     # lefordított teszt .class fájlok (mvn test után)
+├── generated-sources/                # annotáció-feldolgozók generált forrása, ha van ilyen
+└── Teszt-1.0-SNAPSHOT.jar            # mvn package után: a csomagolt, futtatható jar
+```
+
+Ez a mappa **soha nem kerül verziókezelésbe** — Git-ben legyen `.gitignore`-ban —, mert bármikor
+újra elő tud állni a forráskódból, pontosan úgy, ahogy a Laravel `vendor/` mappáját sem
+verziózod, csak a `composer.json`-t/`composer.lock`-ot.
+
+```bash
+mvn clean      # törli a teljes target/ mappát
+```
+
+Hasznos, ha "furcsa", megmagyarázhatatlan hibákat kapsz, és biztos akarsz lenni benne, hogy nincs
+elavult, korábbi futásból visszamaradt build artifact a háttérben.
+
 ## Hello World
+
+Az alábbi példa a `hu.molitor` package nevet használja — ha az előző szakasz szerint már
+átnevezted az IntelliJ-generált `org.example`-t, nálad ez lesz a saját package neved; ha még nem,
+nyugodtan hagyd `org.example`-nek, a lényeg ugyanaz marad.
 
 ```java
 // src/main/java/hu/molitor/HelloWorld.java
