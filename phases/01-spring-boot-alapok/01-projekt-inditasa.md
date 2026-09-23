@@ -12,8 +12,29 @@ függőségeket, letöltesz egy `.zip`-et, és kicsomagolva már fut is.
 VS Code-ban ez a **Spring Initializr Java Support** kiegészítővel (`vscjava.vscode-spring-initializr`,
 a Java Extension Pack-nek is része) még kényelmesebb: `Ctrl+Shift+P` →
 `Spring Initializr: Generate a Maven Project` — ugyanaz az űrlap végigkérdezve a paletta menüből,
-a generált projekt automatikusan megnyílik. IntelliJ IDEA-ban ugyanez natívan beépített:
-`File → New → Project → Spring Initializr`.
+a generált projekt automatikusan megnyílik.
+
+**IntelliJ IDEA-ban** a mód attól függ, Community vagy Ultimate kiadást használsz:
+
+- **Ultimate**: `File → New → Project` → bal oldalon **`Spring Initializr`** (nem `Maven`) —
+  natívan beépített varázsló, ugyanaz az űrlap, mint a start.spring.io-n (GroupId, ArtifactId,
+  Java verzió, build eszköz, dependency választó checkboxokkal). Fizetős kiadás (a JDK ingyenes
+  marad, csak az IDE extra funkciói díjkötelesek), de 30 napig ingyen kipróbálható, diákoknak/
+  oktatási célra pedig a JetBrains ingyen licencet ad.
+- **Community** (amit ez a roadmap feltételez, l. [0.1 fejezet](../00-java-alapok/01-kornyezet-es-eszkozok.md#ide-vs-code-vagy-intellij-idea)):
+  **nincs beépítve** a Spring Initializr varázsló — ez az egyetlen funkció, amit az Ultimate-hez
+  kötnek. A projekt létrehozása két lépésben megy:
+  1. Nyisd meg a https://start.spring.io oldalt böngészőben, töltsd ki az űrlapot a lenti
+     táblázat szerint, `Generate` → letölti a projektet `.zip`-ként, csomagold ki.
+  2. IntelliJ-ben `File → Open` → válaszd ki a kicsomagolt mappát (ahol a `pom.xml` van). A
+     Community kiadás minden további nélkül felismeri és megnyitja **bármilyen** Maven/Gradle
+     projektet, függetlenül attól, mivel generálódott — ugyanúgy indexeli és futtatja, mintha a
+     saját varázslójával hoztad volna létre.
+
+  Alternatívaként a Marketplace-ben (`Settings → Plugins → Marketplace`) van ingyenes community
+  plugin (pl. **"Spring Initializr and Assistant"**), ami visszahozza a beépített varázslót a
+  Community kiadásba is — kényelmesebb, ha sokszor hozol létre új Spring projektet, de
+  funkcionálisan a böngészős úttal egyenértékű.
 
 ### Ajánlott beállítások a kezdő projekthez
 

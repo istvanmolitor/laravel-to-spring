@@ -348,6 +348,50 @@ javac src/main/java/hu/molitor/HelloWorld.java -d target/classes
 java -cp target/classes hu.molitor.HelloWorld
 ```
 
+Bontsuk le pontosan, mi történik itt.
+
+**1. sor — fordítás:**
+
+| Rész | Jelentés |
+|---|---|
+| `javac` | a Java fordító — forráskódból (`.java`) bytecode-ot (`.class`) állít elő |
+| `src/main/java/hu/molitor/HelloWorld.java` | a lefordítandó forrásfájl elérési útja |
+| `-d target/classes` | hova kerüljön a lefordított `.class` fájl (`-d` = "destination") |
+
+A `javac` beolvassa a fájl elején lévő `package hu.molitor;` sort, és a `-d`-vel megadott
+célkönyvtárban **automatikusan újraépíti ezt a csomag-struktúrát alkönyvtárakként** — nem oda
+kerül a `.class`, ahol a forrás van, hanem: `target/classes/hu/molitor/HelloWorld.class`.
+
+**2. sor — futtatás:**
+
+| Rész | Jelentés |
+|---|---|
+| `java` | a JVM indítóparancsa — ez futtatja a lefordított bytecode-ot |
+| `-cp target/classes` | **classpath** — hol keresse a JVM a `.class` fájlokat |
+| `hu.molitor.HelloWorld` | a teljesen minősített osztálynév (`csomag.OsztályNév`), **nem** fájlútvonal |
+
+Ez a legfontosabb fogalmi váltás PHP-hoz képest: PHP-ban egy **fájlt** futtatsz
+(`php public/index.php`), Java-ban egy **osztályt**, aminek a nevét a csomagjával együtt, pontokkal
+elválasztva adod meg. A JVM ebből vezeti le, hol keresse a `.class` fájlt: a pontokat
+könyvtár-elválasztóra cseréli (`hu.molitor.HelloWorld` → `hu/molitor/HelloWorld`), hozzáfűzi a
+`.class` kiterjesztést, és a `-cp`-ben megadott gyökér alatt keresi:
+`target/classes/hu/molitor/HelloWorld.class`. Ez picit hasonlít a Composer PSR-4
+namespace→mappa leképezésére, csak ezt itt maga a JVM végzi el minden indításkor, nem egy
+generált `autoload.php`.
+
+Ha az IntelliJ-generált `org.example` csomagban dolgozol, ugyanez a két parancs így néz ki
+(feltéve, hogy a fájl `Main.java`, ahogy IntelliJ alapból elnevezi):
+
+```bash
+javac src/main/java/org/example/Main.java -d target/classes
+java -cp target/classes org.example.Main
+```
+
+Ez a két parancs **egyetlen fájlra** működik, kézzel. Amint két vagy több `.java` fájlod van,
+amik hivatkoznak egymásra, mindkettőt egyszerre kell látnia a `javac`-nak a classpath-on,
+különben `cannot find symbol` hibát kapsz — ezt oldja meg automatikusan a `mvn compile` (végigmegy
+az összes `src/main/java` alatti fájlon, összeállítja a classpath-ot a `pom.xml` függőségeiből).
+
 Gyakorlatban az IDE-ből fogod futtatni (VS Code-ban a `main` metódus fölötti `Run` CodeLens
 linkkel, IntelliJ-ben a sor elején megjelenő zöld play gombbal) — a fenti csak azért fontos, hogy
 értsd, mi történik a háttérben a fordítás/futtatás két lépésében.

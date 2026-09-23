@@ -28,6 +28,9 @@ további fázisaiban tovább bővül:
 5. [Záró gyakorlat: Todo API](01-spring-boot-alapok/05-gyakorlat-todo-api.md) —
    CRUD végpontok felállítása in-memory/H2 tárolással, konkrét kérés/válasz példákkal és
    `curl` teszteléssel — ez a projekt a további fázisokban tovább bővül
+6. [Kiegészítés: Thymeleaf vs. Blade](01-spring-boot-alapok/06-sablon-renderesztes-thymeleaf.md)
+   *(opcionális)* — szerver oldali renderelés, `@Controller` + nézetnév vs. `@RestController`,
+   `th:text`/`th:if`/`th:each`/`th:field` fordítótábla, layout/fragmentek, CSRF form kezelés
 
 ---
 

@@ -1,4 +1,4 @@
-[← Előző: 04. Konfiguráció](04-konfiguracio.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő fázis: [02. Adatréteg: Spring Data JPA →](../02-adatreteg-jpa.md)
+[← Előző: 04. Konfiguráció](04-konfiguracio.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő: [06. Kiegészítés: Thymeleaf →](06-sablon-renderesztes-thymeleaf.md)
 
 # 1.5 — Záró gyakorlat: Todo API
 
@@ -175,4 +175,4 @@ curl "http://localhost:8080/api/todos?done=false"
 
 ---
 
-[← Előző: 04. Konfiguráció](04-konfiguracio.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő fázis: [02. Adatréteg: Spring Data JPA →](../02-adatreteg-jpa.md)
+[← Előző: 04. Konfiguráció](04-konfiguracio.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő: [06. Kiegészítés: Thymeleaf →](06-sablon-renderesztes-thymeleaf.md)
