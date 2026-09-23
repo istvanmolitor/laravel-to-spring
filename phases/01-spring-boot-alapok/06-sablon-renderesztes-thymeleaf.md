@@ -1,4 +1,4 @@
-[← Előző: 05. Gyakorlat: Todo API](05-gyakorlat-todo-api.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő fázis: [02. Adatréteg: Spring Data JPA →](../02-adatreteg-jpa.md)
+[← Előző: 05. Gyakorlat: Todo API](05-gyakorlat-todo-api.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő: [07. Kiegészítés: űrlap kezelés →](07-urlap-kezeles-form-objektumok.md)
 
 # 1.6 — Kiegészítés: szerver oldali renderelés Thymeleaf-fel (Blade megfelelő)
 
@@ -293,4 +293,4 @@ Ha ezekkel találkozol, a fenti fordítótábla (`th:text`/`th:if`/`th:each`/`th
 
 ---
 
-[← Előző: 05. Gyakorlat: Todo API](05-gyakorlat-todo-api.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő fázis: [02. Adatréteg: Spring Data JPA →](../02-adatreteg-jpa.md)
+[← Előző: 05. Gyakorlat: Todo API](05-gyakorlat-todo-api.md) · [Fázis index](../01-spring-boot-alapok.md) · [Főoldal](../../README.md) · Következő: [07. Kiegészítés: űrlap kezelés →](07-urlap-kezeles-form-objektumok.md)

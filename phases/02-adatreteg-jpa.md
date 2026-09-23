@@ -24,6 +24,9 @@ kódpéldákkal. Haladj sorban — a záró gyakorlat a Todo API-t bővíti tov�
    `@Transactional` mint a `DB::transaction()` deklaratív megfelelője, dirty checking
 6. [Záró gyakorlat: Todo API bővítése](02-adatreteg-jpa/06-gyakorlat-todo-api-bovitese.md) —
    User–Todo kapcsolat, Flyway migrációk, PostgreSQL Docker Compose-ban
+7. [Kiegészítés: cache kezelés](02-adatreteg-jpa/07-cache-kezeles.md)
+   *(opcionális)* — Spring Cache abstraction (`@EnableCaching`, `@Cacheable`/`@CachePut`/`@CacheEvict`)
+   mint a Laravel `Cache` facade megfelelője, Caffeine vs. Redis backend
 
 ---
 

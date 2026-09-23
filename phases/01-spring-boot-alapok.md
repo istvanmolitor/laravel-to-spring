@@ -31,6 +31,12 @@ további fázisaiban tovább bővül:
 6. [Kiegészítés: Thymeleaf vs. Blade](01-spring-boot-alapok/06-sablon-renderesztes-thymeleaf.md)
    *(opcionális)* — szerver oldali renderelés, `@Controller` + nézetnév vs. `@RestController`,
    `th:text`/`th:if`/`th:each`/`th:field` fordítótábla, layout/fragmentek, CSRF form kezelés
+7. [Kiegészítés: űrlap kezelés és form objektumok](01-spring-boot-alapok/07-urlap-kezeles-form-objektumok.md)
+   *(opcionális)* — form-backing object, `@ModelAttribute`+`@Valid`+`BindingResult`,
+   redirect-after-post és flash üzenetek, fájlfeltöltés `MultipartFile`-lal
+8. [Kiegészítés: terminál parancsok](01-spring-boot-alapok/08-terminal-parancsok-cli.md)
+   *(opcionális)* — `CommandLineRunner`/`ApplicationRunner` mint egyszeri induló kód, Spring Shell
+   mint az Artisan custom command legközelebbi megfelelője
 
 ---
 

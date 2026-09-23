@@ -26,6 +26,8 @@ más szintaxissal, de hasonló gondolatmenettel oldja meg.
 | Blade | Thymeleaf (ha kell szerver oldali render; API-nál nem releváns) |
 | Job / Queue (Redis, SQS) | Spring `@Async`, Spring Batch, Spring Cloud Stream, JMS/Kafka |
 | Event/Listener | `ApplicationEvent` + `@EventListener` |
+| `Cache` facade (`Cache::remember`) | Spring Cache abstraction (`@Cacheable`/`@CachePut`/`@CacheEvict`, Caffeine/Redis) |
+| Artisan custom command (`make:command`) | `CommandLineRunner`/`ApplicationRunner`, illetve Spring Shell (`@ShellComponent`) |
 | Config (.env) | `application.yml`/`application.properties` + `@ConfigurationProperties` |
 | Tinker | Spring Shell / egyszerű JUnit teszt |
 | PHPUnit / Pest | JUnit 5 + Mockito |

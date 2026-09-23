@@ -1,4 +1,4 @@
-[← Előző: 05. Tranzakciókezelés](05-tranzakciok.md) · [Fázis index](../02-adatreteg-jpa.md) · [Főoldal](../../README.md) · Következő fázis: [03. Validáció, hibakezelés, réteges architektúra →](../03-validacio-hibakezeles.md)
+[← Előző: 05. Tranzakciókezelés](05-tranzakciok.md) · [Fázis index](../02-adatreteg-jpa.md) · [Főoldal](../../README.md) · Következő: [07. Kiegészítés: cache kezelés →](07-cache-kezeles.md)
 
 # 2.6 — Záró gyakorlat: Todo API bővítése
 
@@ -179,4 +179,4 @@ kap, hogy a `userId`-t ne kérésparaméterként, hanem a bejelentkezett userbő
 
 ---
 
-[← Előző: 05. Tranzakciókezelés](05-tranzakciok.md) · [Fázis index](../02-adatreteg-jpa.md) · [Főoldal](../../README.md) · Következő fázis: [03. Validáció, hibakezelés, réteges architektúra →](../03-validacio-hibakezeles.md)
+[← Előző: 05. Tranzakciókezelés](05-tranzakciok.md) · [Fázis index](../02-adatreteg-jpa.md) · [Főoldal](../../README.md) · Következő: [07. Kiegészítés: cache kezelés →](07-cache-kezeles.md)
