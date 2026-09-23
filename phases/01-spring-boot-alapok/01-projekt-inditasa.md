@@ -9,8 +9,10 @@ kész vázat. Spring-ben ugyanezt egy webes generátor, a **Spring Initializr**
 (https://start.spring.io) végzi el — kiválasztod a build eszközt, a Java verziót és a
 függőségeket, letöltesz egy `.zip`-et, és kicsomagolva már fut is.
 
-IntelliJ IDEA-ban ez még kényelmesebb: `File → New → Project → Spring Initializr`, ugyanaz az
-űrlap az IDE-be beépítve.
+VS Code-ban ez a **Spring Initializr Java Support** kiegészítővel (`vscjava.vscode-spring-initializr`,
+a Java Extension Pack-nek is része) még kényelmesebb: `Ctrl+Shift+P` →
+`Spring Initializr: Generate a Maven Project` — ugyanaz az űrlap végigkérdezve a paletta menüből,
+a generált projekt automatikusan megnyílik.
 
 ### Ajánlott beállítások a kezdő projekthez
 

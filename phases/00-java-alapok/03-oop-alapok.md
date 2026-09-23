@@ -158,7 +158,7 @@ public class Account {
 Fontos szabály: ha felülírod `equals()`-t, **mindig** írd felül `hashCode()`-ot is (kontraktus:
 két egyenlő objektumnak ugyanaz kell legyen a hashCode-ja, különben `HashMap`/`HashSet` rosszul
 fog viselkedni). Ezt a párt a gyakorlatban Lombok-kal vagy IDE-generálással szoktad megoldani, nem
-kézzel írod — IntelliJ-ben `Alt+Insert` → `equals() and hashCode()`.
+kézzel írod — VS Code-ban jobb klikk → `Source Action...` → `Generate hashCode() and equals()`.
 
 ## Enumok
 

@@ -13,7 +13,7 @@ Ez a fázis alfejezetekre van bontva, mindegyik konkrét PHP/Laravel összehason
 kódpéldákkal. Haladj sorban — mindegyik épít az előzőre:
 
 1. [Fejlesztői környezet és build eszközök](00-java-alapok/01-kornyezet-es-eszkozok.md) —
-   JDK, Maven (Composer megfelelője), IntelliJ IDEA, projektstruktúra, Hello World
+   JDK, Maven (Composer megfelelője), VS Code Java kiegészítők, projektstruktúra, Hello World
 2. [Típusrendszer](00-java-alapok/02-tipusrendszer.md) —
    statikus típusosság, primitívek vs. objektumok, `String` összehasonlítás buktatói, `var`
 3. [OOP alapok](00-java-alapok/03-oop-alapok.md) —

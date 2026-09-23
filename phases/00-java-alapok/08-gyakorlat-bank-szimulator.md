@@ -9,7 +9,7 @@ alkalmazd az adott fejezet fogalmait.
 
 ## Projekt felállítása
 
-Hozz létre egy új Maven projektet IntelliJ-ben (lásd [0.1 Környezet és eszközök](01-kornyezet-es-eszkozok.md)),
+Hozz létre egy új Maven projektet VS Code-ban (lásd [0.1 Környezet és eszközök](01-kornyezet-es-eszkozok.md)),
 `junit-jupiter` test-scope függőséggel. Csomagszerkezet:
 
 ```
@@ -43,8 +43,9 @@ kamatlábat (`double interestRate`), enum-konstruktorral.
   (pl. a `SavingsAccount` nem engedhet negatívba menni, a `CheckingAccount` engedhet egy
   túllépési keretet)
 - `getBalance()`, `getOwner()` getterek
-- `equals()`, `hashCode()`, `toString()` felülírása ([0.3](03-oop-alapok.md) alapján — használd
-  IntelliJ generátorát, `Alt+Insert`)
+- `equals()`, `hashCode()`, `toString()` felülírása ([0.3](03-oop-alapok.md) alapján — használd a
+  VS Code Java kiegészítő generátorát: jobb klikk a fájlban → `Source Action...` →
+  `Generate hashCode() and equals()` / `Generate toString()`)
 
 ## 3. lépés — `SavingsAccount` és `CheckingAccount` ([0.3 OOP alapok](03-oop-alapok.md))
 

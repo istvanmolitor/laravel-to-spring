@@ -14,8 +14,22 @@ A JDK (Java Development Kit) tartalmazza a fordítót (`javac`) és a futtatók�
 Ajánlott: **Java 21 (LTS)** — ez a jelenlegi hosszú távú támogatású verzió, ezt fogja várni
 a legtöbb friss Spring Boot 3.x projekt.
 
-Verziókezeléshez használj **SDKMAN**-t — ez kb. az, amit a `phpbrew`/Herd/Valet jelent PHP verziók
-kezelésére:
+Ubuntu-n a legegyszerűbb az APT-os csomagkezelő:
+
+```bash
+sudo apt update
+sudo apt install openjdk-21-jdk
+```
+
+Ellenőrzés:
+
+```bash
+java -version
+javac -version
+```
+
+Ha több Java verziót is kezelni akarsz párhuzamosan (pl. egy régebbi projekthez Java 17 kell), arra
+való a **SDKMAN** — ez kb. az, amit a `phpbrew`/Herd/Valet jelent PHP verziók kezelésére:
 
 ```bash
 curl -s "https://get.sdkman.io" | bash
@@ -26,14 +40,16 @@ sdk install java 21.0.4-tem
 sdk use java 21.0.4-tem
 ```
 
-Ellenőrzés:
-
-```bash
-java -version
-javac -version
-```
+Kezdésnek az APT-os telepítés is tökéletesen elég, ne bonyolítsd túl feleslegesen.
 
 ## Composer → Maven
+
+Ubuntu-n a Maven is APT-ból települ:
+
+```bash
+sudo apt install maven
+mvn -version
+```
 
 | Composer | Maven |
 |---|---|
@@ -126,19 +142,62 @@ hagyományosan fordított domain (`hu.molitor.bank`), és **kötelezően** egyez
 útjával — nincs `composer dump-autoload`, amivel elkened a hibát, a fordító azonnal hibát dob,
 ha nem egyezik.
 
-## IDE: IntelliJ IDEA
+## IDE: Visual Studio Code (Ubuntu)
 
-Töltsd le az **IntelliJ IDEA Community Edition**-t (ingyenes): https://www.jetbrains.com/idea/download/
+Megjegyzés: az **IntelliJ IDEA Community Edition** ingyenes (nem kell rá előfizetés,
+csak az Ultimate verzió fizetős) — ha egyszer úgy döntenél, hogy váltanál, ugyanez a Maven-alapú
+workflow ott is működik. De VS Code-dal is tökéletesen végig lehet csinálni a teljes roadmapot,
+Spring Boot projektekkel együtt.
 
-Ez lesz a PhpStorm Java megfelelője (ugyanaz a JetBrains gyártja, a billentyűkombók és sok
-funkció ismerős lesz). Az Ultimate verzió (fizetős) tartalmaz Spring-specifikus support-ot is,
-de a Community Edition tökéletesen elég ehhez a fázishoz.
+### Java kiegészítők telepítése
 
-Első lépések:
-1. `New Project` → `Maven` → válaszd ki a telepített JDK 21-et
-2. Engedélyezd az auto-import-ot Maven változásoknál (`pom.xml` szerkesztésekor)
-3. Ismerd meg a `Alt+Enter` (quick fix) és `Ctrl+Shift+A` (action search) kombókat — ezekre
-   nagyon sokat fogsz támaszkodni, amíg a Java szintaxis nem válik reflexszé
+```bash
+code --install-extension vscjava.vscode-java-pack
+```
+
+Ez az **"Extension Pack for Java"** (Microsoft/Red Hat), ami egyben tartalmazza:
+- **Language Support for Java(TM) by Red Hat** — szintaxis-kiemelés, autocomplete, refaktorálás
+- **Debugger for Java** — töréspontok, léptetés
+- **Test Runner for Java** — JUnit tesztek futtatása/debugolása közvetlenül az editorból
+- **Maven for Java** — `pom.xml` kezelés, Maven életciklus parancsok a paletta menüből
+- **Project Manager for Java**
+
+### Projekt létrehozása
+
+**A) VS Code-ból, irányított folyamattal:**
+
+`Ctrl+Shift+P` → `Java: Create Java Project` → `Maven` → archetípus:
+`maven-archetype-quickstart` → add meg a groupId-ot (`hu.molitor`) és artifactId-ot
+(`bank-szimulator`) → válassz mappát.
+
+Ez legenerál egy alap `pom.xml`-t (általában JUnit 4-es függőséggel — cseréld le a fenti JUnit 5
+Jupiter blokkra), plusz egy minta `App.java`/`AppTest.java` fájlt.
+
+**B) Kézzel, a fenti `pom.xml`-lel:**
+
+```bash
+mkdir -p bank-szimulator/src/main/java/hu/molitor/bank
+mkdir -p bank-szimulator/src/test/java/hu/molitor/bank
+cd bank-szimulator
+```
+
+Hozd létre a `pom.xml`-t a fenti tartalommal (Write/szerkesztő), majd nyisd meg a mappát:
+
+```bash
+code .
+```
+
+VS Code felismeri, hogy Maven projektről van szó, és a Java Language Server elindítja az
+indexelést (ezt a jobb alsó sarokban egy folyamatjelző mutatja).
+
+### Futtatás és tesztelés VS Code-ban
+
+- Nyisd meg a `main` metódust tartalmazó osztályt — fölötte megjelenik egy `Run | Debug`
+  CodeLens link, arra kattintva lefut, a `Debug`-bal töréspontokat is tehetsz
+- JUnit tesztekhez: a bal oldali sávban egy Erlenmeyer-lombik ikon (**Testing** nézet) — ott
+  listázva látod az összes `@Test` metódust, egyenként vagy csoportosan futtathatod/debugolhatod
+- Terminálból ugyanúgy működik, mint bármelyik Maven projektnél: `mvn compile`, `mvn test`,
+  `mvn package`
 
 ## Hello World
 
@@ -168,8 +227,8 @@ javac src/main/java/hu/molitor/HelloWorld.java -d target/classes
 java -cp target/classes hu.molitor.HelloWorld
 ```
 
-Gyakorlatban IntelliJ-ből fogod futtatni (zöld play gomb a `main` metódus mellett) — a fenti csak
-azért fontos, hogy értsd, mi történik a háttérben a fordítás/futtatás két lépésében.
+Gyakorlatban VS Code-ból fogod futtatni (a `main` metódus fölötti `Run` CodeLens linkkel) — a
+fenti csak azért fontos, hogy értsd, mi történik a háttérben a fordítás/futtatás két lépésében.
 
 ---
 

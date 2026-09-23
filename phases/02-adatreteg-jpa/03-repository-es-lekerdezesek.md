@@ -70,7 +70,8 @@ Todo::where('title', $title)->where('user_id', $userId)->exists();
 A metódusnév felépítése kötött nyelvtant követ: `findBy` / `countBy` / `existsBy` +
 mezőnév(ek) + opcionális módosítók (`Containing`, `IgnoreCase`, `GreaterThan`, `OrderBy...`) +
 `And`/`Or` összekötők. Elsőre furcsa, hogy a "kód" egy metódusnévben él, de a gyakorlatban gyors
-és olvasható — az IDE (IntelliJ) validálja is a nevet a mezőkhöz képest.
+és olvasható — a Java nyelvi szerver (pl. a VS Code Java kiegészítője) validálja is a nevet a
+mezőkhöz képest.
 
 ## JPQL és `@Query`
 
