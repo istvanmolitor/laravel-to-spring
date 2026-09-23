@@ -134,8 +134,8 @@ mvn test -Dtest=TodoServiceTest   # csak egy osztály tesztjei
 ```
 
 Ez a `php artisan test` / `./vendor/bin/pest` megfelelője — VS Code-ban a bal oldali **Testing**
-nézetben (Erlenmeyer-lombik ikon) ugyanígy egyenként vagy osztályszinten is futtathatod/debugolhatod
-a teszteket, zöld pipával jelezve a sikeres futást.
+nézetben (Erlenmeyer-lombik ikon), IntelliJ-ben pedig a sor elején megjelenő zöld play gombbal
+ugyanígy egyenként vagy osztályszinten is futtathatod/debugolhatod a teszteket.
 
 ---
 

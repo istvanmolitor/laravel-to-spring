@@ -12,7 +12,8 @@ függőségeket, letöltesz egy `.zip`-et, és kicsomagolva már fut is.
 VS Code-ban ez a **Spring Initializr Java Support** kiegészítővel (`vscjava.vscode-spring-initializr`,
 a Java Extension Pack-nek is része) még kényelmesebb: `Ctrl+Shift+P` →
 `Spring Initializr: Generate a Maven Project` — ugyanaz az űrlap végigkérdezve a paletta menüből,
-a generált projekt automatikusan megnyílik.
+a generált projekt automatikusan megnyílik. IntelliJ IDEA-ban ugyanez natívan beépített:
+`File → New → Project → Spring Initializr`.
 
 ### Ajánlott beállítások a kezdő projekthez
 

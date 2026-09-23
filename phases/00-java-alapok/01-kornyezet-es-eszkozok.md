@@ -142,14 +142,18 @@ hagyományosan fordított domain (`hu.molitor.bank`), és **kötelezően** egyez
 útjával — nincs `composer dump-autoload`, amivel elkened a hibát, a fordító azonnal hibát dob,
 ha nem egyezik.
 
-## IDE: Visual Studio Code (Ubuntu)
+## IDE: VS Code vagy IntelliJ IDEA
 
-Megjegyzés: az **IntelliJ IDEA Community Edition** ingyenes (nem kell rá előfizetés,
-csak az Ultimate verzió fizetős) — ha egyszer úgy döntenél, hogy váltanál, ugyanez a Maven-alapú
-workflow ott is működik. De VS Code-dal is tökéletesen végig lehet csinálni a teljes roadmapot,
-Spring Boot projektekkel együtt.
+Mindkettő tökéletesen alkalmas a teljes roadmap végigcsinálására, Spring Boot projektekkel
+együtt — nem kell köztük választanod, bármelyikkel (vagy akár váltogatva) haladhatsz. Az
+**IntelliJ IDEA Community Edition** ingyenes (nem kell rá előfizetés, csak az Ultimate verzió
+fizetős), és mivel ugyanaz a JetBrains gyártja, mint a PhpStorm-ot, sok billentyűkombó és
+funkció ismerős lesz belőle. A **VS Code** könnyebb, gyorsabban indul, és ha egyébként is azt
+használod más projektekhez, nem kell külön IDE-t futtatnod párhuzamosan.
 
-### Java kiegészítők telepítése
+### Opció A: Visual Studio Code
+
+Telepítsd a Java kiegészítőcsomagot:
 
 ```bash
 code --install-extension vscjava.vscode-java-pack
@@ -162,9 +166,7 @@ Ez az **"Extension Pack for Java"** (Microsoft/Red Hat), ami egyben tartalmazza:
 - **Maven for Java** — `pom.xml` kezelés, Maven életciklus parancsok a paletta menüből
 - **Project Manager for Java**
 
-### Projekt létrehozása
-
-**A) VS Code-ból, irányított folyamattal:**
+**Projekt létrehozása — A) irányított folyamattal:**
 
 `Ctrl+Shift+P` → `Java: Create Java Project` → `Maven` → archetípus:
 `maven-archetype-quickstart` → add meg a groupId-ot (`hu.molitor`) és artifactId-ot
@@ -173,7 +175,7 @@ Ez az **"Extension Pack for Java"** (Microsoft/Red Hat), ami egyben tartalmazza:
 Ez legenerál egy alap `pom.xml`-t (általában JUnit 4-es függőséggel — cseréld le a fenti JUnit 5
 Jupiter blokkra), plusz egy minta `App.java`/`AppTest.java` fájlt.
 
-**B) Kézzel, a fenti `pom.xml`-lel:**
+**Projekt létrehozása — B) kézzel, a fenti `pom.xml`-lel:**
 
 ```bash
 mkdir -p bank-szimulator/src/main/java/hu/molitor/bank
@@ -190,7 +192,7 @@ code .
 VS Code felismeri, hogy Maven projektről van szó, és a Java Language Server elindítja az
 indexelést (ezt a jobb alsó sarokban egy folyamatjelző mutatja).
 
-### Futtatás és tesztelés VS Code-ban
+**Futtatás és tesztelés:**
 
 - Nyisd meg a `main` metódust tartalmazó osztályt — fölötte megjelenik egy `Run | Debug`
   CodeLens link, arra kattintva lefut, a `Debug`-bal töréspontokat is tehetsz
@@ -198,6 +200,29 @@ indexelést (ezt a jobb alsó sarokban egy folyamatjelző mutatja).
   listázva látod az összes `@Test` metódust, egyenként vagy csoportosan futtathatod/debugolhatod
 - Terminálból ugyanúgy működik, mint bármelyik Maven projektnél: `mvn compile`, `mvn test`,
   `mvn package`
+
+### Opció B: IntelliJ IDEA
+
+Töltsd le a Community Edition-t: https://www.jetbrains.com/idea/download/ — Ubuntu-n a
+legkényelmesebb a Snap csomag (`sudo snap install intellij-idea-community --classic`) vagy a
+JetBrains Toolbox App, ha több JetBrains terméket is kezelnél verziózva.
+
+**Projekt létrehozása:**
+
+`File → New → Project` → bal oldalon `Maven` → válaszd ki a telepített JDK 21-et → `Create`.
+Ez automatikusan legenerálja a `pom.xml`-t és a `src/main/java`/`src/test/java` struktúrát — a
+JUnit 5 függőséget ugyanúgy kézzel kell hozzáadnod a `pom.xml`-hez, a fenti tartalommal.
+
+**Futtatás és tesztelés:**
+
+- Zöld play gomb jelenik meg a `main` metódus és minden `@Test` metódus mellett a sor elején —
+  arra kattintva lefut, a bogár ikonnal debug módban
+- `Alt+Enter` (quick fix) és `Ctrl+Shift+A` (action search) a két legfontosabb kombó, amíg a
+  Java szintaxis nem válik reflexszé
+- `equals()`/`hashCode()`/`toString()` generálásához: `Alt+Insert` a fájlban, majd válaszd ki a
+  kívánt generátort
+- Engedélyezd az auto-importot Maven változásoknál (`pom.xml` szerkesztésekor felugró
+  értesítésben, vagy `Maven` panel → `Reload All Maven Projects`)
 
 ## Hello World
 
@@ -227,8 +252,9 @@ javac src/main/java/hu/molitor/HelloWorld.java -d target/classes
 java -cp target/classes hu.molitor.HelloWorld
 ```
 
-Gyakorlatban VS Code-ból fogod futtatni (a `main` metódus fölötti `Run` CodeLens linkkel) — a
-fenti csak azért fontos, hogy értsd, mi történik a háttérben a fordítás/futtatás két lépésében.
+Gyakorlatban az IDE-ből fogod futtatni (VS Code-ban a `main` metódus fölötti `Run` CodeLens
+linkkel, IntelliJ-ben a sor elején megjelenő zöld play gombbal) — a fenti csak azért fontos, hogy
+értsd, mi történik a háttérben a fordítás/futtatás két lépésében.
 
 ---
 
