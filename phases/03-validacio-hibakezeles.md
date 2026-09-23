@@ -1,4 +1,4 @@
-[← Előző: 2. Adatréteg: Spring Data JPA](02-adatreteg-jpa.md) · [Főoldal](../README.md) · Következő: [04. Spring Security →](04-spring-security.md)
+[← Előző fázis: 02. Adatréteg: Spring Data JPA](02-adatreteg-jpa.md) · [Főoldal](../README.md) · Következő fázis: [04. Spring Security →](04-spring-security.md)
 
 # 3. fázis — Validáció, hibakezelés, réteges architektúra
 
@@ -6,20 +6,21 @@ Időtartam: ~1-2 hét
 
 Cél: production-grade API struktúra, ahogy egy nagyobb Laravel projektben is elvárnád.
 
-- Bean Validation: `@Valid`, `@NotNull`, `@Size`, `@Email` a DTO-kon — ez a Form Request
-  validációs szabályainak felel meg
-- DTO-k bevezetése (ne az Entity-t exponáld közvetlenül az API-n — ez fontosabb Spring-ben, mint
-  Laravel-ben, mert nincs automatikus `$hidden`/`$fillable` védelmed)
-- `@ControllerAdvice` + `@ExceptionHandler` — ez a Laravel `Handler.php`/exception rendering
-  megfelelője, globális hibakezelés
-- Réteges architektúra: Controller → Service → Repository — ez tisztább elválasztás, mint
-  a legtöbb Laravel projekt "fat controller/fat model" mintája; szokj hozzá a service réteghez
-- MapStruct vagy manuális mapper Entity↔DTO konverzióhoz
+Ez a fázis alfejezetekre van bontva, mindegyik konkrét PHP/Laravel összehasonlításokkal és
+kódpéldákkal. Haladj sorban — mindegyik épít az előzőre:
 
-## Gyakorlat
-
-Refaktoráld a Todo API-t tiszta réteges struktúrára, egységes hibaválasz formátummal.
+1. [Bean Validation](03-validacio-hibakezeles/01-bean-validation.md) —
+   `@Valid`, `@NotNull`, `@Size`, `@Email` a DTO-kon, egyedi validátor írása — a Form Request
+   `rules()` megfelelője
+2. [DTO-k és mapping](03-validacio-hibakezeles/02-dto-k-es-mapping.md) —
+   miért ne exponáld az Entity-t közvetlenül, `record` mint DTO, kézzel írt mapper vs MapStruct
+3. [Globális hibakezelés](03-validacio-hibakezeles/03-globalis-hibakezeles.md) —
+   `@ControllerAdvice` + `@ExceptionHandler`, egységes hibaválasz formátum — a `Handler.php` megfelelője
+4. [Réteges architektúra](03-validacio-hibakezeles/04-reteges-architektura.md) —
+   Controller → Service → Repository felelősség-elválasztás a Laravel "fat controller" mintával szemben
+5. [Záró gyakorlat: refaktorálás](03-validacio-hibakezeles/05-gyakorlat-refaktoralas.md) —
+   a Todo API átalakítása tiszta réteges struktúrára, DTO-kkal és egységes hibaválasszal
 
 ---
 
-[← Előző: 2. Adatréteg: Spring Data JPA](02-adatreteg-jpa.md) · [Főoldal](../README.md) · Következő: [04. Spring Security →](04-spring-security.md)
+[← Előző fázis: 02. Adatréteg: Spring Data JPA](02-adatreteg-jpa.md) · [Főoldal](../README.md) · Következő fázis: [04. Spring Security →](04-spring-security.md)
